@@ -5,7 +5,7 @@
   <title>Buy Stocks</title>
 </head>
 <body>
-    <H1 style="color: blue">Add New Transaction</H1>
+    <H1 style="color: blue">Buy Stocks</H1>
     <form method="POST">
         {% csrf_token %}
         ID: <textarea name="id" rows="1" cols="30"></textarea><br>
@@ -14,7 +14,21 @@
         <input type="submit">
     </form>
 
-    <H1 style="color: blue">Last 10 Transactions</H1>
+    <H1 style="color: blue">Last 10 Purchases</H1>
+    <table border="1" width="40%">
+        <th>Date</th>
+        <th>Investor ID</th>
+        <th>Company</th>
+        <th>Payed</th>
+        {% for content in table_results %}
+            <tr>
+                <td>{{ content.date }} </td>
+                <td>{{ content.investor_id }} </td>
+                <td>{{ content.company }} </td>
+                <td>{{ content.payed }} </td>
+            </tr>
+        {% endfor %}
+    </table>
     <br>
     <a href="home">Home</a>
     <br>

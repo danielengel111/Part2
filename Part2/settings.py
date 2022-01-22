@@ -77,9 +77,15 @@ WSGI_APPLICATION = 'Part2.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'ENGINE': 'mssql',
+        'NAME': 'danielengel',
+        'USER': 'danielengel',
+        'PASSWORD': 'Qwerty12!',
+        'HOST': 'techniondbcourse01.database.windows.net',
+        'PORT': '1433',
+        'OPTIONS': {"driver": "ODBC Driver 17 for SQL Server",
+                    }
+    },
 }
 
 
