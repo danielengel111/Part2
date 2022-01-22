@@ -5,6 +5,17 @@
     <title>Add Transaction</title>
 </head>
 <body>
+    <H1 style="color: blue">Add New Transaction</H1>
+    <form method="POST">
+        {% csrf_token %}
+        ID: <textarea name="id" rows="1" cols="30"></textarea><br>
+        Transaction Sum: <textarea name="transaction_sum" rows="1" cols="30"></textarea><br>
+        <input type="submit">
+    </form>
+
+
+
+    <H1 style="color: blue">Last 10 Transactions</H1>
     <br>
     <a href="home">Home</a>
     <br>
