@@ -5,13 +5,21 @@
   <title>Buy Stocks</title>
 </head>
 <body>
+    <H1 style="color: blue">Add New Transaction</H1>
+    <form method="POST">
+        {% csrf_token %}
+        ID: <textarea name="id" rows="1" cols="30"></textarea><br>
+        Company: <textarea name="company" rows="1" cols="30"></textarea><br>
+        Quantity: <textarea name="quantity" rows="1" cols="30"></textarea><br>
+        <input type="submit">
+    </form>
+
+    <H1 style="color: blue">Last 10 Transactions</H1>
     <br>
     <a href="home">Home</a>
     <br>
     <a href="query_results">Query Results</a>
     <br>
     <a href="add_transaction">Add Transaction</a>
-    <br>
-    <a href="buy_stocks">Buy Stocks</a>
 </body>
 </html>
