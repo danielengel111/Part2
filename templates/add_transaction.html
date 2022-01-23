@@ -8,8 +8,8 @@
     <H1 style="color: blue">Add New Transaction</H1>
     <form action="add_transaction" method="POST">
         {% csrf_token %}
-        ID: <textarea name="id" rows="1" cols="30" required></textarea><br>
-        Transaction Sum: <textarea name="transaction_sum" rows="1" cols="30" required></textarea><br>
+        ID: <input type="number" name="id" rows="1" cols="30" required/><br>
+        Transaction Sum: <input type="number" name="transaction_sum" rows="1" cols="30" required/><br>
         <input type="submit"><b>  {{ error_message }}</b>
     </form>
 

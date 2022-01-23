@@ -8,9 +8,9 @@
     <H1 style="color: blue">Buy Stocks</H1>
     <form action="buy_stocks" method="POST">
         {% csrf_token %}
-        ID: <textarea name="id" rows="1" cols="30" required></textarea><br>
-        Company: <textarea name="company" rows="1" cols="30" required></textarea><br>
-        Quantity: <textarea name="quantity" rows="1" cols="30" required></textarea><br>
+        ID: <input type="number" name="id" rows="1" cols="30" required/><br>
+        Company: <input name="company" rows="1" cols="30" required/><br>
+        Quantity: <input type="number" min="0" name="quantity" rows="1" cols="30" required/><br>
         <input type="submit"><b>  {{ error_message }}</b>
     </form>
 
