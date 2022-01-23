@@ -156,6 +156,33 @@ def update_stock(symbol, today):
         return price
 
 
+def today_purchase_exists(ID, symbol, today):
+    with connection.cursor() as cursor:
+        cursor.execute(f"""
+             SELECT *
+             FROM Buying
+             WHERE Symbol = '{symbol}' AND ID = {ID} AND tDate = '{today}'
+             ORDER BY tDate DESC;
+             """)
+        stock = dictfetchall(cursor)
+        if not stock:
+            return False
+        return True
+
+
+def write_purchase(ID, symbol, today, quantity, price):
+    with connection.cursor() as cursor:
+        cursor.execute(f"""
+             INSERT INTO Buying (tDate, ID, Symbol, BQuantity)
+             VALUES ('{today}',{ID}, '{symbol}', {quantity});
+             """)
+        cursor.execute(f"""
+             UPDATE Investor
+             SET AvailableCash = AvailableCash - {price * quantity}
+             WHERE ID = {ID}
+             """)
+
+
 def buy_stocks(request):
     error_message = ""
     if request.method == 'POST' and request.POST:
@@ -175,9 +202,12 @@ def buy_stocks(request):
     else:
         price = update_stock(company, today)
         if not enough_cash(ID, price * quantity):
-            error_message = "Not enough money for payment."
+            error_message = "Not enough money for payment"
         else:
-            pass
+            if not today_purchase_exists(ID, company, today):
+                write_purchase(ID, company, today, quantity, price)
+            else:
+                error_message = "This Investor already purchased this Stock today"
 
     table_results = get_last_purchases()
     return render(request, 'buy_stocks.html',
