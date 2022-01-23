@@ -6,12 +6,12 @@
 </head>
 <body>
     <H1 style="color: blue">Buy Stocks</H1>
-    <form method="POST">
+    <form action="buy_stocks" method="POST">
         {% csrf_token %}
-        ID: <textarea name="id" rows="1" cols="30"></textarea><br>
-        Company: <textarea name="company" rows="1" cols="30"></textarea><br>
-        Quantity: <textarea name="quantity" rows="1" cols="30"></textarea><br>
-        <input type="submit">
+        ID: <textarea name="id" rows="1" cols="30" required></textarea><br>
+        Company: <textarea name="company" rows="1" cols="30" required></textarea><br>
+        Quantity: <textarea name="quantity" rows="1" cols="30" required></textarea><br>
+        <input type="submit"><b>  {{ error_message }}</b>
     </form>
 
     <H1 style="color: blue">Last 10 Purchases</H1>
@@ -34,6 +34,6 @@
     <br>
     <a href="query_results">Query Results</a>
     <br>
-    <a href="add_transaction">Add Transaction</a>
+    <a href="add_transaction_page">Add Transaction</a>
 </body>
 </html>
